@@ -1,0 +1,29 @@
+{
+  "Web":
+  {
+    "Address": "0.0.0.0",
+    "Port": "8000"
+  },
+  "Redis": {
+    "Host": "85.25.11.9",
+    "Port": "3643",
+    "Auth": "d9c87ede0e7c514f181c58a02bd11206",
+    "Db": 0
+  },
+  "Amqp":
+  {
+    "Url": "amqp://zpvwzqmj:vOlzCdM1gPXdfes6_7IkYLx1tmdM7jt9@dove.rmq.cloudamqp.com/zpvwzqmj",
+    "Queue": "myqueue"
+  },
+  "Setup":
+  {
+    "FlushInterval": 2,
+    "FlushItems": 50,
+    "NumberOfConsumers": 1
+  },
+  "Client":
+  {
+    "ApiUrl": "http://localhost:8000",
+    "NumberOfTestHits": 1000
+  }
+}
