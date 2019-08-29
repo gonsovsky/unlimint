@@ -20,8 +20,13 @@ type Buffer struct {
 
 func NewBuffer(persistDb IRepository, cfg shared.SetupCfg) *Buffer {
 	b := Buffer{PersistentDb: persistDb, flushInterval: cfg.FlushInterval, flushItems: cfg.FlushItems}
-	go b.Stats()
 	return &b
+}
+
+func (b *Buffer) Consume() {
+	for range time.NewTicker(time.Duration(b.flushInterval) * time.Second).C {
+		b.Flush()
+	}
 }
 
 func (b *Buffer) Post(hit shared.GoogleHit) error {
@@ -55,10 +60,4 @@ func (b *Buffer) Flush() error {
 
 func (b *Buffer) GetCount() int32 {
 	return atomic.LoadInt32(&b.count)
-}
-
-func (b *Buffer) Stats() {
-	for range time.NewTicker(time.Duration(b.flushInterval) * time.Second).C {
-		b.Flush()
-	}
 }

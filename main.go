@@ -32,6 +32,7 @@ func main() {
 
 	//Временный буффер (на 5 секунд) в памяти программы
 	buffer := storage.NewBuffer(db, cfg.Setup)
+	go buffer.Consume()
 
 	//потребители входящих Google Hit'ов
 	for i := 1; i <= cfg.Setup.NumberOfConsumers; i++ {
