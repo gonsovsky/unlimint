@@ -40,7 +40,6 @@ func (b *Buffer) Flush() error {
 	}
 	tmp := b.hits[:x]
 	b.hits = b.hits[x:]
-	atomic.AddInt32(&b.count, int32(x*-1))
 	b.m.Unlock()
 	if x == 0 {
 		return nil
@@ -48,6 +47,7 @@ func (b *Buffer) Flush() error {
 	fmt.Println("сохраняем ", x, " хитов...")
 	for _, hit := range tmp {
 		b.PersistentDb.Post(hit)
+		atomic.AddInt32(&b.count, int32(-1))
 		time.Sleep(1 * time.Millisecond)
 	}
 	return nil

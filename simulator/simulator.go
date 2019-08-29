@@ -4,6 +4,7 @@ import (
 	"../shared"
 	"../storage"
 	"fmt"
+	"os"
 	"sync/atomic"
 	"time"
 )
@@ -48,7 +49,11 @@ func (c *Siumulator) GetCount() int32 {
 
 func (e *Siumulator) Stats() {
 	for range time.NewTicker(1500 * time.Millisecond).C {
-		fmt.Printf("отправлено %d, в буфере: %d, сохранено в базе: %d\r\n",
+		fmt.Printf("отправлено %d, в буфере: %d, в базе: %d\r\n",
 			e.GetCount(), e.buffer.GetCount(), e.db.GetCount())
+		if e.db.GetCount() >= int32(e.config.NumberOfTestHits) {
+			os.Exit(0)
+		}
+
 	}
 }
