@@ -1,18 +1,16 @@
 package shared
 
 import (
-	"bytes"
 	"encoding/json"
 	"github.com/monoculum/formam"
-	"io"
 	"net/http"
 )
 
 type GoogleHit struct {
 	ProtocolVersion string `json:"v,omitempty"`
 	TrackingID      string `json:"tid,omitempty"`
-	ClientID 		string `json:"cid,omitempty"`
-	UserID   		string `json:"uid,omitempty"`
+	ClientID        string `json:"cid,omitempty"`
+	UserID          string `json:"uid,omitempty"`
 	HitType         string `json:"t,omitempty"`
 	DocumentPath    string `json:"dp,omitempty"`
 }
@@ -39,9 +37,4 @@ func (hit *GoogleHit) FromHTMLForm(r *http.Request) {
 	if err != nil {
 		panic(err)
 	}
-}
-
-//ToReader return ByteReader for this structure
-func (hit *GoogleHit) ToReader() io.Reader {
-	return bytes.NewBuffer(hit.ToJSON())
 }
