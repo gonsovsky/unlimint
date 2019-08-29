@@ -1,4 +1,4 @@
-package simulator
+package test
 
 import (
 	"../shared"
@@ -11,14 +11,14 @@ import (
 
 //Симулятор отправки сообщений ...
 type Siumulator struct {
-	config    shared.ClientCfg
+	config    shared.TestCfg
 	buffer    storage.IRepository
 	db        storage.IRepository
 	sentToWeb int32
 }
 
 //Start send fake messages to web server
-func NewSiumulator(config shared.ClientCfg, buffer storage.IRepository, db storage.IRepository) *Siumulator {
+func NewTest(config shared.TestCfg, buffer storage.IRepository, db storage.IRepository) *Siumulator {
 	e := Siumulator{config: config, buffer: buffer, db: db}
 	time.Sleep(300 * time.Millisecond)
 	go e.Stats()

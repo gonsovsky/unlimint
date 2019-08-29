@@ -4,8 +4,8 @@ import (
 	"./consumer"
 	"./producer"
 	"./shared"
-	"./simulator"
 	"./storage"
+	"./test"
 	"./webServer"
 	"context"
 	"fmt"
@@ -41,7 +41,7 @@ func main() {
 	}
 
 	//Эмулятор запросов
-	go simulator.NewSiumulator(cfg.Client, buffer, db)
+	go test.NewTest(cfg.Test, buffer, db)
 
 	//закрытие программы
 	shutdown()

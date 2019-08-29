@@ -10,10 +10,10 @@ import (
 
 //RedisConfig - настройки программы, Redis
 type RedisCfg struct {
-	Host     string
-	Port     string
-	Db       int
-	Auth     string
+	Host string
+	Port string
+	Db   int
+	Auth string
 }
 
 //WebCfg - настройки программы, Web
@@ -30,23 +30,23 @@ type AmqpCfg struct {
 
 //Config - настройки программы
 type Cfg struct {
-	Web WebCfg
-	Amqp AmqpCfg
+	Web   WebCfg
+	Amqp  AmqpCfg
 	Redis RedisCfg
 	Setup SetupCfg
-	Client ClientCfg
+	Test  TestCfg
 }
 
 //Setup - настройки программы
 type SetupCfg struct {
-	FlushInterval int //Персистентить данные не чаще чем (секунд)
-	FlushItems int //Не более чем элементов
+	FlushInterval     int //Персистентить данные не чаще чем (секунд)
+	FlushItems        int //Не более чем элементов
 	NumberOfConsumers int //кол-во слушателей
 }
 
-//Client - настройки программы для Клиента-Отладчика
-type ClientCfg struct {
-	ApiUrl string //Заменя для google-analytics/collect
+//Test - настройки программы для Клиента-Отладчика
+type TestCfg struct {
+	ApiUrl           string //Заменя для google-analytics/collect
 	NumberOfTestHits int
 }
 
